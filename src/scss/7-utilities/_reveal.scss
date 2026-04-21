@@ -1,0 +1,22 @@
+// Reveal on scroll — IntersectionObserver 트리거용 유틸
+// data-reveal 속성으로 지정된 요소는 화면 진입 시 is-in 클래스로 활성화
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(2.4rem);
+  transition:
+    opacity 0.8s var(--easing-out),
+    transform 0.8s var(--easing-out);
+
+  &.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

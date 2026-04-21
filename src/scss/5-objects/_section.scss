@@ -1,0 +1,73 @@
+// 섹션 레이아웃 패턴 (JDC 메인)
+// Block: section
+// - 상하 패딩 --spacing-section 자동 적용
+// - inner wrapper로 max-width + 좌우 패딩
+// Modifier:
+// - --inverse: 반전 톤 (진한 배경 + 밝은 텍스트)
+// - --muted: 연한 톤 배경 (구분용 tint)
+@use '../2-tools/mixins' as *;
+
+.section {
+  position: relative;
+
+  @include section-padding;
+
+  &__inner {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--spacing-container);
+    padding-left: var(--spacing-container);
+  }
+
+  &__head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    align-items: end;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+  }
+
+  &__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+  }
+
+  &__desc {
+    max-width: 56ch;
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
+
+  &--inverse {
+    background-color: var(--color-ink-deep);
+    color: var(--color-white);
+
+    .section__title {
+      color: var(--color-white);
+    }
+
+    .section__desc {
+      color: var(--color-gray-300);
+    }
+  }
+
+  &--muted {
+    background-color: var(--color-primary-50);
+  }
+}

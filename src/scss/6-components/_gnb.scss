@@ -1,0 +1,64 @@
+// 주메뉴(GNB) — 헤더 중앙 내비게이션
+// Block: gnb
+@use '../2-tools/responsive' as resp;
+
+.gnb {
+  display: flex;
+  gap: 0;
+  align-items: center;
+
+  // 모바일/태블릿 — 헤더 햄버거로 대체
+  @media (width <= 1279px) {
+    display: none;
+  }
+
+  &__item {
+    position: static;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: inherit;
+    transition: color var(--transition-fast) var(--easing-base);
+
+    &::after {
+      position: absolute;
+      right: var(--spacing-lg);
+      bottom: 0;
+      left: var(--spacing-lg);
+      height: 2px;
+      background-color: var(--color-primary);
+      content: '';
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform var(--transition-base) var(--easing-base);
+    }
+
+    // 투명 헤더 상태일 때는 흰 밑줄
+    .site-header:not(.site-header--scrolled, .site-header--mega-open) &::after {
+      background-color: var(--color-white);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -6px;
+    }
+  }
+
+  // 호버 시 밑줄 확장
+  &__item:hover &__link::after {
+    transform: scaleX(1);
+  }
+
+  // mega-open 시 hover 색상을 브랜드 블루로
+  .site-header--mega-open &__link:hover,
+  .site-header--mega-open &__item:hover &__link {
+    color: var(--color-primary);
+  }
+}

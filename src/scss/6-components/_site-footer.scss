@@ -1,0 +1,118 @@
+// 사이트 푸터 — 다크 배경, 브랜드 블록 + 링크 컬럼
+// Block: site-footer
+@use '../2-tools/responsive' as resp;
+
+.site-footer {
+  padding: var(--spacing-4xl) 0 var(--spacing-2xl);
+  font-size: var(--font-size-sm);
+  color: color-mix(in srgb, var(--color-white) 70%, transparent);
+  background-color: var(--color-ink-deep);
+
+  &__inner {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--spacing-container);
+    padding-left: var(--spacing-container);
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: var(--spacing-2xl);
+    padding-bottom: calc(var(--spacing-2xl) + var(--spacing-sm));
+    border-bottom: 1px solid color-mix(in srgb, var(--color-white) 12%, transparent);
+
+    @media (width <= 1100px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (width <= 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    color: var(--color-white);
+
+    p {
+      max-width: 36ch;
+      font-size: var(--font-size-sm);
+      line-height: 1.7;
+      color: color-mix(in srgb, var(--color-white) 60%, transparent);
+    }
+  }
+
+  &__brand-logo {
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white);
+
+    svg {
+      width: auto;
+      height: 6rem;
+    }
+  }
+
+  &__col {
+    h4 {
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.02em;
+      color: var(--color-white);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    a {
+      color: color-mix(in srgb, var(--color-white) 60%, transparent);
+
+      &:hover {
+        color: var(--color-white);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-white);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xl);
+    align-items: center;
+    justify-content: space-between;
+    padding-top: calc(var(--spacing-xl) - var(--spacing-xs));
+  }
+
+  &__bottom-links {
+    display: flex;
+    gap: var(--spacing-lg);
+
+    a {
+      color: color-mix(in srgb, var(--color-white) 60%, transparent);
+
+      &:hover {
+        color: var(--color-white);
+      }
+    }
+
+    a.site-footer__bottom-link--strong {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-white);
+    }
+  }
+
+  &__copyright {
+    font-size: var(--font-size-xs);
+    color: color-mix(in srgb, var(--color-white) 40%, transparent);
+  }
+}

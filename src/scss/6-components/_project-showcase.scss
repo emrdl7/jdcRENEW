@@ -1,0 +1,108 @@
+// 프로젝트 쇼케이스 — JDC 8대 핵심사업 캐러셀
+// Block: project-showcase
+@use '../2-tools/responsive' as resp;
+
+.project-showcase {
+  position: relative;
+
+  &__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-lg) calc(var(--spacing-xl) + var(--spacing-sm));
+    align-items: end;
+    margin-bottom: var(--spacing-3xl);
+
+    @media (width <= 1100px) {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+  }
+
+  &__head-desc {
+    grid-column: 1 / -1;
+  }
+
+  &__controls {
+    display: flex;
+    gap: calc(var(--spacing-lg) + var(--spacing-xs));
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__counter {
+    display: inline-flex;
+    gap: var(--spacing-sm);
+    align-items: baseline;
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+  }
+
+  &__counter-current {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  &__counter-sep {
+    color: var(--color-gray-300);
+  }
+
+  &__nav {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  &__nav-btn {
+    display: grid;
+    place-items: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    color: var(--color-text);
+    background-color: transparent;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition:
+      background-color var(--transition-base) var(--easing-out),
+      color var(--transition-base) var(--easing-out),
+      border-color var(--transition-base) var(--easing-out),
+      opacity var(--transition-fast) var(--easing-out);
+
+    &:hover:not(:disabled) {
+      color: var(--color-white);
+      background-color: var(--color-ink-deep);
+      border-color: var(--color-ink-deep);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  &__track {
+    display: flex;
+    gap: var(--gap-card);
+    padding: 0.4rem var(--gap-card) var(--spacing-lg);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gap-card);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

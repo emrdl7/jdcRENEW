@@ -23,4 +23,4 @@
 @use '7-utilities' as utilities;
 
 // 프로젝트별 오버라이드 (맨 마지막)
-// @use 'project-overrides'; // 프로젝트 시작 시 활성화
+@use 'project-overrides';

@@ -1,0 +1,64 @@
+// 관련 사이트 카드 — 패밀리 사이트 로고 그리드
+// Block: related-card
+@use '../2-tools/responsive' as resp;
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  align-items: center;
+  padding: 2.8rem var(--spacing-md);
+  color: inherit;
+  text-align: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  transition:
+    background-color var(--transition-fast) var(--easing-base),
+    border-color var(--transition-fast) var(--easing-base);
+
+  &:hover {
+    background-color: var(--color-primary-50);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &__logo {
+    display: grid;
+    place-items: center;
+    width: 8.8rem;
+    height: 5.6rem;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--color-gray-800);
+  }
+}
+
+// 관련사이트 그리드 래퍼
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-md);
+
+  @media (width <= 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (width <= 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

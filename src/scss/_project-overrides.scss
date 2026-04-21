@@ -1,18 +1,60 @@
 // ============================================================
-// 프로젝트별 토큰 오버라이드
+// JDC 프로젝트 토큰 오버라이드 및 확장
 // ============================================================
-// 이 파일에서 프로젝트에 맞는 Primary 색상을 변경하세요.
-// 기본값: --color-primary: #256ef4 (파란색)
-// 사용법:
-// 1. 아래 :root 블록의 주석을 해제하세요
-// 2. 프로젝트 브랜드 색상으로 변경하세요
-// 3. npm run build:css로 빌드하세요
-//
-// :root {
-//   --color-primary: #0a7b4f;        // 프로젝트 메인 색상
-//   --color-primary-light: #3da87a;  // 밝은 변형
-//   --color-primary-dark: #065535;   // 어두운 변형
-// }
-// 추가 오버라이드 가능한 토큰:
-// --color-bg, --color-text, --font-family-base 등
-// 전체 토큰 목록: src/scss/1-settings/_tokens-*.scss 참조
+// JDC 제주국제자유도시개발센터 메인 페이지용 브랜드 토큰.
+// 기본 토큰(_tokens-*.scss)은 수정하지 않고 여기에서 오버라이드/확장한다.
+
+:root {
+  // ─── Primary (JDC 제주 블루 — 제주 밤바다) ──────────────────
+  --color-primary: #12407f;
+  --color-primary-light: #2f549b;
+  --color-primary-dark: #0d3266;
+
+  // Primary 확장 스케일 (50~900) — 카드 배경/호버/강조용
+  --color-primary-50: #eff3fb;
+  --color-primary-100: #dbe4f3;
+  --color-primary-200: #afc0e2;
+  --color-primary-400: #5878b9;
+  --color-primary-500: #2f549b;
+  --color-primary-600: #12407f;
+  --color-primary-700: #0d3266;
+  --color-primary-800: #0a264e;
+  --color-primary-900: #061a36;
+
+  // ─── Gray 보강 (구분선/테두리용 150 단계) ────────────────────
+  --color-gray-150: #eef0f4;
+
+  // 기본 텍스트 톤 보강 (현무암에 가까운 warm-leaning slate)
+  --color-text: #141a24;
+  --color-text-muted: #545c69;
+  --color-ink-deep: #0c1117; // 다크 섹션 배경
+
+  // ─── 폰트 패밀리 — Pretendard Variable 단일 ────────────────
+  --font-family-base: 'Pretendard Variable', 'Pretendard', -apple-system,
+    blinkmacsystemfont, system-ui, 'Malgun Gothic', sans-serif;
+
+  // ─── 폰트 사이즈 확장 (3xl/4xl/5xl/hero — 섹션 타이틀·히어로) ─
+  --font-size-3xl: 4.4rem; // 44px — 섹션 타이틀
+  --font-size-4xl: 6rem; // 60px — 대형 타이틀
+  --font-size-5xl: 8.4rem; // 84px — 디스플레이
+  --font-size-hero: clamp(4.4rem, 8.4vw, 12.8rem); // Hero 대형 타이포
+
+  // ─── 간격 확장 (섹션/컨테이너/초대형) ──────────────────────
+  --spacing-4xl: 8rem; // 80px
+  --spacing-section: clamp(8rem, 10vw, 16rem); // 섹션 상하 패딩
+  --spacing-container: clamp(2rem, 4vw, 4.8rem); // 컨테이너 좌우 패딩
+
+  // ─── 컨테이너 최대 너비 (디자인 기준 1440px) ────────────────
+  --container-max: 144rem;
+
+  // ─── 카드 갭 ────────────────────────────────────────────
+  --gap-card: var(--spacing-lg);
+
+  // ─── 반경 확장 (대형 카드/미디어용) ─────────────────────────
+  --radius-2xl: 2rem; // 20px
+  --radius-3xl: 2.8rem; // 28px
+
+  // ─── 이징 (브랜드 모션) ────────────────────────────────
+  --easing-base: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

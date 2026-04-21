@@ -1,0 +1,80 @@
+// 상단 유틸리티 바 — 사이트맵/고객헌장/언어 토글 링크 모음
+// Block: topbar
+@use '../2-tools/responsive' as resp;
+
+.topbar {
+  position: relative;
+  z-index: 50;
+  font-size: var(--font-size-xs);
+  color: color-mix(in srgb, var(--color-white) 78%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 14%, transparent);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--container-max);
+    height: 4rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--spacing-container);
+    padding-left: var(--spacing-container);
+  }
+
+  &__links {
+    display: flex;
+    gap: calc(var(--spacing-lg) - var(--spacing-xs));
+
+    a {
+      color: inherit;
+
+      &:hover {
+        color: var(--color-white);
+      }
+    }
+
+    @media (width <= 640px) {
+      display: none;
+    }
+  }
+
+  &__lang {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
+
+  &__lang-item {
+    padding: 0.2rem 0;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    color: inherit;
+
+    &--active {
+      color: var(--color-white);
+    }
+  }
+
+  &__lang-sep {
+    opacity: 0.3;
+  }
+
+  // mega-open/scrolled 상태에서 색상 반전
+  .site-header--mega-open & {
+    color: var(--color-text-muted);
+    border-bottom-color: var(--color-gray-150);
+  }
+
+  .site-header--mega-open &__links a {
+    color: var(--color-text-muted);
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+
+  .site-header--mega-open &__lang-item--active {
+    color: var(--color-text);
+  }
+}

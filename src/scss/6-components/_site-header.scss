@@ -1,0 +1,168 @@
+// 사이트 헤더 — 히어로 위에 오버레이되는 상단 고정 헤더
+// Block: site-header
+// - 기본 상태: 투명, 흰색 텍스트, position: absolute
+// - scrolled: fixed + 흰 배경 + 다크 텍스트
+// - mega-open: 흰 배경 + 다크 텍스트 + fixed
+@use '../2-tools/responsive' as resp;
+
+.site-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 40;
+  color: var(--color-white);
+  transition:
+    background-color var(--transition-base) var(--easing-base),
+    color var(--transition-base) var(--easing-base),
+    border-color var(--transition-base) var(--easing-base);
+
+  &__inner {
+    display: flex;
+    gap: calc(var(--spacing-xl) + var(--spacing-sm));
+    align-items: center;
+    justify-content: space-between;
+    height: 8.8rem;
+    overflow: visible;
+  }
+
+  // 로고
+  &__logo {
+    display: inline-grid;
+    flex: 0 0 auto;
+    align-items: center;
+    color: inherit;
+    overflow: visible;
+  }
+
+  &__logo-img {
+    display: block;
+    grid-row: 1;
+    grid-column: 1;
+    width: auto;
+    max-width: none;
+    height: 5.6rem;
+    transition: opacity var(--transition-fast) var(--easing-base);
+  }
+
+  // 기본: 흰 로고 표시 / 컬러 로고 숨김
+  &__logo-img--color {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__logo-img--light {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  // 헤더 액션 (검색/메뉴 토글)
+  &__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+  }
+
+  &__icon-btn {
+    display: grid;
+    place-items: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: var(--radius-full);
+    color: inherit;
+    background-color: transparent;
+    transition: background-color var(--transition-fast) var(--easing-base);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-white) 16%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-white);
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      stroke-width: 1.8;
+    }
+  }
+
+  // 모바일 메뉴 토글 — 1280 미만에서만 표시
+  &__menu-toggle {
+    display: none;
+
+    @include resp.respond-to('tablet') {
+      display: grid;
+    }
+
+    @media (width <= 767px) {
+      display: grid;
+    }
+  }
+
+  // ── Modifier: scrolled ───────────────────────────────────
+  &--scrolled {
+    position: fixed;
+    color: var(--color-text);
+    background-color: color-mix(in srgb, var(--color-white) 94%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-gray-150);
+
+    .site-header__logo-img--light {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .site-header__logo-img--color {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .site-header__icon-btn:hover {
+      background-color: var(--color-gray-100);
+    }
+  }
+
+  // ── Modifier: mega-open ──────────────────────────────────
+  &--mega-open {
+    position: fixed;
+    color: var(--color-text);
+    background-color: var(--color-white);
+
+    .site-header__logo-img--light {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .site-header__logo-img--color {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  // scrolled 상태에서 topbar 숨김
+  &--scrolled .topbar {
+    display: none;
+  }
+}
+
+// Mega 백드롭 — 메가메뉴 오픈 시 어두운 오버레이
+.mega-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background-color: color-mix(in srgb, var(--color-ink-deep) 45%, transparent);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--transition-base) var(--easing-base),
+    visibility var(--transition-base);
+
+  .site-header--mega-open ~ & {
+    visibility: visible;
+    opacity: 1;
+  }
+}

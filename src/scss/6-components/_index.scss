@@ -7,3 +7,20 @@
 @forward 'breadcrumb';
 @forward 'pagination';
 @forward 'tab';
+
+// JDC 메인 페이지 전용 컴포넌트
+@forward 'site-header';
+@forward 'topbar';
+@forward 'gnb';
+@forward 'megamenu';
+@forward 'hero';
+@forward 'quick-menu';
+@forward 'notice-board';
+@forward 'project-showcase';
+@forward 'project-card';
+@forward 'metrics';
+@forward 'esg';
+@forward 'press-card';
+@forward 'sns-card';
+@forward 'related-card';
+@forward 'site-footer';
