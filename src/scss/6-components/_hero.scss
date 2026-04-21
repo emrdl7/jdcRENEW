@@ -21,6 +21,7 @@
   }
 
   // 배경 슬라이드 스택 — HTML에 여러 장 하드코딩, JS는 active 클래스만 순환
+  // transform을 transition으로 관리: animation 제거 시 스냅백 없이 부드럽게 페이드
   &__bg-img {
     position: absolute;
     inset: 0;
@@ -28,12 +29,13 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
+    transform: scale(1.08);
     will-change: opacity;
-    transition: opacity 1.4s ease-in-out;
+    transition: opacity 1.4s ease-in-out, transform 24s var(--easing-out);
 
     &--active {
       opacity: 1;
-      animation: hero-zoom 24s var(--easing-out) both;
+      transform: scale(1);
     }
   }
 
@@ -356,15 +358,6 @@
   }
 }
 
-@keyframes hero-zoom {
-  from {
-    transform: scale(1.08);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
 
 @keyframes hero-scroll-line {
   0% {
