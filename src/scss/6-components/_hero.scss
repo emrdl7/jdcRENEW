@@ -126,6 +126,7 @@
     align-items: flex-end;
     justify-content: space-between;
     width: 100%;
+    max-width: 124rem;
     margin-top: var(--spacing-2xl);
     padding-top: var(--spacing-xl);
     border-top: 1px solid color-mix(in srgb, var(--color-white) 22%, transparent);
