@@ -62,25 +62,6 @@
     text-align: center;
   }
 
-  &__eyebrow {
-    display: inline-flex;
-    gap: var(--spacing-md);
-    align-items: center;
-    margin-bottom: calc(var(--spacing-xl) + var(--spacing-xs));
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: color-mix(in srgb, var(--color-white) 75%, transparent);
-
-    &::before,
-    &::after {
-      width: 2.4rem;
-      height: 1px;
-      background-color: color-mix(in srgb, var(--color-white) 45%, transparent);
-      content: '';
-    }
-  }
 
   &__title {
     margin-bottom: calc(var(--spacing-xl) + var(--spacing-sm));
