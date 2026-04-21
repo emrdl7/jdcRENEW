@@ -22,7 +22,13 @@
     gap: calc(var(--spacing-xl) + var(--spacing-sm));
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    max-width: var(--container-max);
     height: 8.8rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--spacing-container);
+    padding-left: var(--spacing-container);
     overflow: visible;
   }
 
@@ -35,25 +41,30 @@
     overflow: visible;
   }
 
+  // 로고는 background-image로 로드 — 외부 SVG 스프라이트 대체
   &__logo-img {
     display: block;
     grid-row: 1;
     grid-column: 1;
-    width: auto;
-    max-width: none;
+    width: 26.4rem;
     height: 5.6rem;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
     transition: opacity var(--transition-fast) var(--easing-base);
   }
 
   // 기본: 흰 로고 표시 / 컬러 로고 숨김
-  &__logo-img--color {
-    visibility: hidden;
-    opacity: 0;
-  }
-
   &__logo-img--light {
     visibility: visible;
+    background-image: url('../../images/jdc-logo-white.svg');
     opacity: 1;
+  }
+
+  &__logo-img--color {
+    visibility: hidden;
+    background-image: url('../../images/jdc-logo.svg');
+    opacity: 0;
   }
 
   // 헤더 액션 (검색/메뉴 토글)
@@ -68,6 +79,7 @@
     place-items: center;
     width: 4.4rem;
     height: 4.4rem;
+    border: none;
     border-radius: var(--radius-full);
     color: inherit;
     background-color: transparent;
@@ -83,8 +95,8 @@
     }
 
     svg {
-      width: 2rem;
-      height: 2rem;
+      width: 2.4rem;
+      height: 2.4rem;
       stroke-width: 1.8;
     }
   }
@@ -142,10 +154,6 @@
     }
   }
 
-  // scrolled 상태에서 topbar 숨김
-  &--scrolled .topbar {
-    display: none;
-  }
 }
 
 // Mega 백드롭 — 메가메뉴 오픈 시 어두운 오버레이

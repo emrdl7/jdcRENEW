@@ -48,11 +48,16 @@
     display: inline-block;
     margin-bottom: var(--spacing-md);
     color: var(--color-white);
+  }
 
-    svg {
-      width: auto;
-      height: 6rem;
-    }
+  &__brand-logo-img {
+    display: block;
+    width: 28rem;
+    height: 6rem;
+    background-image: url('../../images/jdc-logo-white.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
   }
 
   &__col {

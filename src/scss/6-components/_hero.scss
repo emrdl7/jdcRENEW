@@ -28,7 +28,8 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity var(--transition-slow) var(--easing-out);
+    will-change: opacity;
+    transition: opacity 1.4s ease-in-out;
 
     &--active {
       opacity: 1;
@@ -85,6 +86,7 @@
     font-weight: var(--font-weight-bold);
     line-height: 0.92;
     letter-spacing: -0.045em;
+    color: var(--color-white);
 
     em {
       font-style: normal;
@@ -218,53 +220,34 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   gap: var(--spacing-md);
   min-height: 30rem;
-  padding: calc(var(--spacing-xl) + var(--spacing-md)) calc(var(--spacing-xl) + var(--spacing-xs)) var(--spacing-xl);
+  padding: var(--spacing-2xl) var(--spacing-xl);
   overflow: hidden;
+  text-align: center;
   color: var(--color-white);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary-900) 28%, transparent) 0%, color-mix(in srgb, var(--color-primary-900) 82%, transparent) 100%);
-  backdrop-filter: blur(18px) saturate(135%);
-  isolation: isolate;
+  background-color: color-mix(in srgb, var(--color-primary-900) 62%, transparent);
+  backdrop-filter: blur(18px) saturate(130%);
   transition:
-    transform 0.55s var(--easing-out),
-    background 0.45s var(--easing-out);
-
-  &::before {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: linear-gradient(160deg, color-mix(in srgb, var(--color-primary-500) 55%, transparent) 0%, color-mix(in srgb, var(--color-primary-900) 90%, transparent) 75%);
-    content: '';
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.55s var(--easing-out);
-  }
+    transform 0.45s var(--easing-out),
+    background-color 0.35s var(--easing-out);
 
   &::after {
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 2;
     width: 0;
     height: 2px;
     background-color: var(--color-white);
     content: '';
-    transition: width 0.6s var(--easing-out);
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
+    transition: width 0.5s var(--easing-out);
   }
 
   &:hover {
-    transform: translateY(-8px);
-
-    &::before {
-      opacity: 1;
-    }
+    transform: translateY(-6px);
+    background-color: color-mix(in srgb, var(--color-primary-800) 72%, transparent);
 
     &::after {
       width: 100%;
@@ -276,85 +259,50 @@
     outline-offset: -6px;
   }
 
-  &__bignum {
-    position: absolute;
-    z-index: 0;
-    font-size: clamp(16rem, 17vw, 24rem);
-    font-weight: var(--font-weight-bold);
-    line-height: 0.82;
-    letter-spacing: -0.05em;
-    color: transparent;
-    -webkit-text-stroke: 1.2px color-mix(in srgb, var(--color-white) 22%, transparent);
-    pointer-events: none;
-    user-select: none;
-    transition:
-      transform 0.7s var(--easing-out),
-      -webkit-text-stroke-color 0.5s var(--easing-out);
-  }
-
-  &:hover &__bignum {
-    -webkit-text-stroke-color: color-mix(in srgb, var(--color-white) 62%, transparent);
-    transform: scale(1.04);
-  }
-
   &__eyebrow {
-    display: inline-flex;
-    gap: var(--spacing-md);
-    align-items: center;
     font-size: 1.1rem;
     font-weight: var(--font-weight-semibold);
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--color-white) 72%, transparent);
-
-    &::before {
-      width: 2.8rem;
-      height: 1px;
-      background-color: color-mix(in srgb, var(--color-white) 55%, transparent);
-      content: '';
-    }
+    color: color-mix(in srgb, var(--color-white) 70%, transparent);
   }
 
   &__title {
     margin: 0;
-    font-size: clamp(2.6rem, 2.6vw, 3.4rem);
+    font-size: clamp(2.4rem, 2.4vw, 3.2rem);
     font-weight: var(--font-weight-bold);
-    line-height: 1.18;
-    letter-spacing: -0.035em;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
     word-break: keep-all;
     color: var(--color-white);
   }
 
   &__desc {
-    max-width: 34ch;
+    max-width: 30ch;
     margin: 0;
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     line-height: 1.65;
     word-break: keep-all;
-    color: color-mix(in srgb, var(--color-white) 76%, transparent);
+    color: color-mix(in srgb, var(--color-white) 74%, transparent);
   }
 
   &__cta {
     display: inline-flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     align-items: center;
-    align-self: flex-start;
-    margin-top: var(--spacing-sm);
-    padding: 1.3rem 2.2rem 1.3rem 2.4rem;
+    margin-top: var(--spacing-xs);
+    padding: 1.2rem 2.2rem 1.2rem 2.4rem;
     font-size: 1.35rem;
     font-weight: var(--font-weight-semibold);
     letter-spacing: 0.01em;
     color: var(--color-primary-900);
     background-color: var(--color-white);
     border-radius: var(--radius-full);
-    transition:
-      background-color 0.35s var(--easing-out),
-      color 0.35s var(--easing-out),
-      padding-right 0.35s var(--easing-out);
+    transition: padding-right 0.35s var(--easing-out);
 
     svg {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.4rem;
+      height: 1.4rem;
       stroke-width: 2.2;
       transition: transform 0.35s var(--easing-out);
     }
@@ -364,60 +312,19 @@
     padding-right: 3rem;
 
     svg {
-      transform: translateX(6px);
+      transform: translateX(5px);
     }
-  }
-
-  // 비대칭 리듬 — 가운데 카드가 살짝 위로 들림
-  &--offset {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary-500) 42%, transparent) 0%, color-mix(in srgb, var(--color-primary-900) 90%, transparent) 100%);
-    transform: translateY(-20px);
-
-    &:hover {
-      transform: translateY(-28px);
-    }
-
-    @media (width <= 1100px) {
-      transform: none;
-
-      &:hover {
-        transform: translateY(-8px);
-      }
-    }
-  }
-
-  // 대형 넘버 위치
-  &--1 &__bignum {
-    top: -1.8rem;
-    right: -0.8rem;
-  }
-
-  &--2 &__bignum {
-    right: -1.4rem;
-    bottom: -3.6rem;
-  }
-
-  &--3 &__bignum {
-    top: -2rem;
-    left: -1rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
     &,
-    &::before,
     &::after,
-    &__bignum,
     &__cta,
     &__cta svg {
       transition: none;
     }
 
     &:hover {
-      transform: none;
-    }
-
-    &--offset,
-    &--offset:hover {
       transform: none;
     }
   }

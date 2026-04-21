@@ -60,12 +60,14 @@
     opacity: 0.3;
   }
 
-  // mega-open/scrolled 상태에서 색상 반전
+  // scrolled/mega-open 상태에서 색상 반전
+  .site-header--scrolled &,
   .site-header--mega-open & {
     color: var(--color-text-muted);
     border-bottom-color: var(--color-gray-150);
   }
 
+  .site-header--scrolled &__links a,
   .site-header--mega-open &__links a {
     color: var(--color-text-muted);
 
@@ -74,6 +76,7 @@
     }
   }
 
+  .site-header--scrolled &__lang-item--active,
   .site-header--mega-open &__lang-item--active {
     color: var(--color-text);
   }

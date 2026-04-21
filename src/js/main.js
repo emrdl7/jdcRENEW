@@ -22,39 +22,45 @@
   }
 
   // ─── 2) 메가메뉴 ──────────────────────────────────────────
-  const megaEl = document.getElementById('megamenu')
+  // 패널이 각 gnb__item 안에 중첩 배치됨 — DOM 탭 순서: 1뎁스 → 2뎁스 → 다음 1뎁스
   const gnbEl = document.getElementById('gnb')
   const backdrop = document.getElementById('mega-backdrop')
-  const megaPanels = document.querySelectorAll('.megamenu__panel')
+  const gnbItems = gnbEl ? gnbEl.querySelectorAll('.gnb__item') : []
   let megaTimer = null
 
   function openMega (idx) {
-    if (!header || !megaEl) return
+    if (!header) return
     clearTimeout(megaTimer)
-    megaPanels.forEach((p) => {
-      p.hidden = Number(p.dataset.panel) !== idx
+    gnbItems.forEach((item) => {
+      const isActive = Number(item.dataset.menu) === idx
+      item.classList.toggle('gnb__item--active', isActive)
+      const link = item.querySelector('.gnb__link')
+      if (link) link.setAttribute('aria-expanded', isActive ? 'true' : 'false')
     })
     header.classList.add('site-header--mega-open')
-    megaEl.setAttribute('aria-hidden', 'false')
   }
 
   function closeMega () {
-    if (!header || !megaEl) return
+    if (!header) return
     megaTimer = setTimeout(() => {
       header.classList.remove('site-header--mega-open')
-      megaEl.setAttribute('aria-hidden', 'true')
+      gnbItems.forEach((item) => {
+        item.classList.remove('gnb__item--active')
+        const link = item.querySelector('.gnb__link')
+        if (link) link.setAttribute('aria-expanded', 'false')
+      })
     }, 120)
   }
 
   if (gnbEl) {
-    gnbEl.querySelectorAll('.gnb__item').forEach((item) => {
+    gnbItems.forEach((item) => {
       item.addEventListener('mouseenter', () => openMega(Number(item.dataset.menu)))
       item.addEventListener('focusin', () => openMega(Number(item.dataset.menu)))
     })
-    ;[gnbEl, megaEl].forEach((el) => {
-      if (!el) return
-      el.addEventListener('mouseleave', closeMega)
-      el.addEventListener('mouseenter', () => clearTimeout(megaTimer))
+    gnbEl.addEventListener('mouseleave', closeMega)
+    gnbEl.addEventListener('mouseenter', () => clearTimeout(megaTimer))
+    gnbEl.addEventListener('focusout', (e) => {
+      if (!gnbEl.contains(e.relatedTarget)) closeMega()
     })
     if (backdrop) backdrop.addEventListener('mouseenter', closeMega)
     document.addEventListener('keydown', (e) => {
