@@ -18,11 +18,20 @@
     position: absolute;
     inset: 0;
     z-index: -2;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+  // 배경 슬라이드 스택 — HTML에 여러 장 하드코딩, JS는 active 클래스만 순환
+  &__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--transition-slow) var(--easing-out);
+
+    &--active {
+      opacity: 1;
       animation: hero-zoom 24s var(--easing-out) both;
     }
   }

@@ -31,7 +31,8 @@
     transform: translateY(0);
   }
 
-  &__inner {
+  // 메뉴별 패널 — HTML에 6개 모두 하드코딩, JS는 [hidden] 토글만
+  &__panel {
     display: grid;
     grid-template-columns: 26rem repeat(6, 1fr);
     gap: calc(var(--spacing-xl) + var(--spacing-sm));
@@ -41,6 +42,10 @@
     margin-right: auto;
     margin-left: auto;
     padding: calc(var(--spacing-xl) + var(--spacing-sm)) var(--spacing-container) var(--spacing-2xl);
+
+    &[hidden] {
+      display: none;
+    }
 
     @include resp.respond-to('tablet') {
       grid-template-columns: 1fr 1fr;
