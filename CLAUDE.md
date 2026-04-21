@@ -1,16 +1,15 @@
 ## Project
 
-**INFOMIND UX 디자인/퍼블리싱 가이드 시스템**
+**인포마인드 UX 프로젝트**
 
-인포마인드 UX팀의 디자인 및 퍼블리싱 기본 규칙과 템플릿을 체계화한 가이드 시스템.
+인포마인드 UX팀 표준(ITCSS + BEM + 디자인 토큰)을 적용한 프로젝트다.
 
-**Core Value:** 신규 프로젝트 시작 시 검증된 팀 표준을 즉시 적용할 수 있어야 한다.
+**Core Value:** 검증된 팀 표준을 일관되게 유지하며 개발한다.
 
 ---
 
 ## 코딩 규칙
 
-> 소스: `rules.json` | 상세 문서: `/conventions/` | 갱신: `npm run build:rules`
 > 위반은 훅(check-violations.js + stylelint)이 자동 검출한다.
 
 <!-- RULES_START -->
@@ -60,14 +59,13 @@
 
 ### 신규 컴포넌트 생성 시
 
-`/create-component {컴포넌트명}` 스킬 사용 — 아래 파일 4개가 일괄 생성됨:
+`/create-component {컴포넌트명}` 스킬 사용 — 아래 파일 3개가 일괄 생성됨:
 
 | 파일 | 위치 |
 |------|------|
 | SCSS | `src/scss/6-components/_{name}.scss` |
 | 스니펫 | `src/snippets/{name}.md` |
 | 플레이그라운드 | `src/playground/{name}.html` |
-| 문서 페이지 | `site/components/{name}.md` |
 
 ---
 
@@ -75,12 +73,9 @@
 
 | Category | Technology | Version |
 |----------|-----------|---------|
-| Site Generator | Eleventy (11ty) | ^3.1.5 |
 | CSS Preprocessor | sass (Dart Sass) | ^1.98.0 |
 | SCSS Pattern | ITCSS | - |
-| Tokens | Style Dictionary | ^5.4.0 |
 | Linting | Stylelint + stylelint-selector-bem-pattern | ^17.5.0 |
-| A11y Testing | pa11y-ci + axe-core | latest |
 
 ---
 
@@ -161,15 +156,17 @@ BEM은 **5-objects, 6-components 레이어에만** 적용한다.
 
 ## LLM 컨텍스트 파일
 
-`prompts/` 폴더에 작업 유형별 컨텍스트가 있다. 필요한 파일을 대화에 첨부하거나 읽어서 사용하라.
+작업 유형에 따라 아래 파일을 읽어서 컨텍스트를 확보하라.
 
-| 파일 | 용도 |
-|------|------|
-| `prompts/context.md` | 컴포넌트/SCSS 작업 시 규칙 + 토큰 요약 |
-| `prompts/tokens.md` | 전체 토큰 목록 |
-| `prompts/components.md` | 컴포넌트 스니펫 마크업 |
-| `prompts/design-rules.md` | 디자인 품질 규칙 |
-| `prompts/publishing.md` | 퍼블리싱 체크리스트 |
+| 파일 | 언제 읽을까 |
+|------|------------|
+| `prompts/context.md` | 컴포넌트/SCSS 작업 시작 시 — 규칙 + 토큰 요약 |
+| `prompts/tokens.md` | 토큰 이름을 확인해야 할 때 |
+| `prompts/components.md` | 컴포넌트 마크업 패턴을 참조할 때 |
+| `prompts/design-rules.md` | 디자인 품질 기준이 필요할 때 |
+| `prompts/publishing.md` | 퍼블리싱 완료 전 체크리스트 확인 시 |
+
+---
 
 ## 명령어
 
@@ -187,4 +184,3 @@ npm run watch:css       # CSS 감시 빌드
 - 따옴표: single quote
 - 세미콜론: SCSS는 사용, JS/HTML은 사용하지 않음
 - 주석 언어: 한국어
-
