@@ -140,15 +140,15 @@
 
   // ─── 5) 공지 탭 전환 ─────────────────────────────────────
   const noticeTabs = document.querySelectorAll('.notice-board__tab')
-  const noticeLists = document.querySelectorAll('.notice-board__list')
+  const noticePanelEls = document.querySelectorAll('.notice-board__list, .notice-board__more')
 
-  if (noticeTabs.length && noticeLists.length) {
+  if (noticeTabs.length && noticePanelEls.length) {
     noticeTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         const key = tab.dataset.tab
         noticeTabs.forEach((t) => t.classList.toggle('notice-board__tab--active', t === tab))
-        noticeLists.forEach((list) => {
-          list.hidden = list.dataset.panel !== key
+        noticePanelEls.forEach((el) => {
+          el.hidden = el.dataset.panel !== key
         })
       })
     })

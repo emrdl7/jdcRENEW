@@ -146,4 +146,40 @@
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
   }
+
+  &__more {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-gray-150);
+    transition: color 0.15s var(--easing-base);
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+      transition: transform 0.15s var(--easing-out);
+    }
+
+    &:hover {
+      color: var(--color-primary);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
 }
