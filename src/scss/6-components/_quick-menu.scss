@@ -42,8 +42,8 @@
     border-radius: var(--radius-lg);
     color: inherit;
     transition:
-      background-color var(--transition-fast) var(--easing-base),
-      transform var(--transition-base) var(--easing-out);
+      background-color 0.15s var(--easing-base),
+      transform 0.3s var(--easing-out);
 
     // 좌측 구분선 (첫 아이템 제외)
     & + &::before {
@@ -54,7 +54,7 @@
       width: 1px;
       background-color: var(--color-gray-150);
       content: '';
-      transition: opacity var(--transition-fast) var(--easing-base);
+      transition: opacity 0.15s var(--easing-base);
     }
 
     &:hover {
@@ -86,7 +86,7 @@
     width: 3.6rem;
     height: 3.6rem;
     color: var(--color-primary);
-    transition: transform var(--transition-base) var(--easing-out);
+    transition: transform 0.3s var(--easing-out);
 
     svg {
       width: 100%;
@@ -104,7 +104,7 @@
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.01em;
     color: var(--color-text);
-    transition: color var(--transition-fast) var(--easing-base);
+    transition: color 0.15s var(--easing-base);
   }
 
   &__item:hover &__label {
@@ -122,8 +122,8 @@
     margin-top: auto;
     color: var(--color-gray-400);
     transition:
-      transform var(--transition-fast) var(--easing-base),
-      color var(--transition-fast) var(--easing-base);
+      transform 0.15s var(--easing-base),
+      color 0.15s var(--easing-base);
   }
 
   &__item:hover &__arrow {
