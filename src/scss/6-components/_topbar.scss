@@ -1,4 +1,4 @@
-// 상단 유틸리티 바 — 사이트맵/고객헌장/언어 토글 링크 모음
+// 상단 유틸리티 바 — 사용자 전환 / 로그인 / 언어선택 / 사이트맵
 // Block: topbar
 @use '../2-tools/responsive' as resp;
 
@@ -22,62 +22,172 @@
     padding-left: var(--spacing-container);
   }
 
-  &__links {
+  // ── 왼쪽: 사용자 전환 ──────────────────────────────────────────
+  &__persona {
     display: flex;
-    gap: calc(var(--spacing-lg) - var(--spacing-xs));
-
-    a {
-      color: inherit;
-
-      &:hover {
-        color: var(--color-white);
-      }
-    }
-
-    @media (width <= 640px) {
-      display: none;
-    }
+    align-items: stretch;
+    align-self: stretch;
+    border-right: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
   }
 
-  &__lang {
+  &__persona-btn {
+    position: relative;
     display: flex;
-    gap: var(--spacing-md);
     align-items: center;
-  }
-
-  &__lang-item {
-    padding: 0.2rem 0;
+    padding: 0 1.8rem;
+    font-size: 1.3rem;
     font-weight: var(--font-weight-medium);
-    letter-spacing: 0.04em;
-    color: inherit;
+    letter-spacing: 0.03em;
+    color: color-mix(in srgb, var(--color-white) 50%, transparent);
+    transition: color 0.2s;
+
+    // 두 버튼 사이 구분선
+    & + & {
+      border-left: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+    }
+
+    &:hover {
+      color: color-mix(in srgb, var(--color-white) 85%, transparent);
+    }
 
     &--active {
+      color: var(--color-white);
+      font-weight: var(--font-weight-semibold);
+
+      // 하단 활성 인디케이터
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--color-white);
+        content: '';
+      }
+    }
+  }
+
+  // ── 오른쪽: 액션 그룹 ──────────────────────────────────────────
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+  }
+
+  &__action-link {
+    color: inherit;
+
+    &:hover {
       color: var(--color-white);
     }
   }
 
-  &__lang-sep {
-    opacity: 0.3;
+  // ── 언어 드롭다운 ──────────────────────────────────────────────
+  &__lang-dropdown {
+    position: relative;
   }
 
-  // scrolled/mega-open 상태에서 색상 반전
+  &__lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-white);
+    }
+
+    svg {
+      transition: transform 0.2s;
+    }
+
+    &[aria-expanded='true'] svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__lang-list {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    right: 0;
+    min-width: 7rem;
+    padding: 0.4rem 0;
+    list-style: none;
+    background-color: var(--color-white);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-black) 18%, transparent);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__lang-option {
+    padding: 0.6rem 1.4rem;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover {
+      background-color: var(--color-primary-50);
+      color: var(--color-primary);
+    }
+
+    &--active {
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  // ── scrolled / mega-open 상태 반전 ─────────────────────────────
   .site-header--scrolled &,
   .site-header--mega-open & {
     color: var(--color-text-muted);
     border-bottom-color: var(--color-gray-150);
   }
 
-  .site-header--scrolled &__links a,
-  .site-header--mega-open &__links a {
+  .site-header--scrolled &__persona,
+  .site-header--mega-open &__persona {
+    border-color: var(--color-gray-200);
+  }
+
+  .site-header--scrolled &__persona-btn,
+  .site-header--mega-open &__persona-btn {
     color: var(--color-text-muted);
 
-    &:hover {
+    & + & {
+      border-color: var(--color-gray-200);
+    }
+
+    &--active {
       color: var(--color-text);
+
+      &::after {
+        background-color: var(--color-primary);
+      }
     }
   }
 
-  .site-header--scrolled &__lang-item--active,
-  .site-header--mega-open &__lang-item--active {
+  .site-header--scrolled &__action-link:hover,
+  .site-header--mega-open &__action-link:hover,
+  .site-header--scrolled &__lang-btn:hover,
+  .site-header--mega-open &__lang-btn:hover {
     color: var(--color-text);
   }
 }

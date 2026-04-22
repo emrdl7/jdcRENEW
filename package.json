@@ -4,8 +4,8 @@
   "description": "인포마인드 UX 프로젝트 스타터 킷 — ITCSS + BEM + 디자인 토큰",
   "private": true,
   "scripts": {
-    "build:css": "sass src/scss/style.scss dist/css/style.css --load-path=node_modules",
-    "watch:css": "sass src/scss/style.scss dist/css/style.css --load-path=node_modules --watch",
+    "build:css": "sass src/scss/style.scss:dist/css/style.css src/scss/intro.scss:dist/css/intro.css --load-path=node_modules",
+    "watch:css": "sass src/scss/style.scss:dist/css/style.css src/scss/intro.scss:dist/css/intro.css --load-path=node_modules --watch",
     "lint:css": "stylelint \"src/scss/**/*.scss\"",
     "lint:css:fix": "stylelint \"src/scss/**/*.scss\" --fix",
     "check": "node ./scripts/check-violations.js"

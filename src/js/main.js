@@ -172,4 +172,36 @@
   } else {
     reveals.forEach((el) => el.classList.add('is-in'))
   }
+
+  // ─── 7) 언어 드롭다운 ────────────────────────────────────────
+  const langBtn = document.querySelector('.topbar__lang-btn')
+  const langList = document.querySelector('.topbar__lang-list')
+  if (langBtn && langList) {
+    langBtn.addEventListener('click', () => {
+      const isOpen = langBtn.getAttribute('aria-expanded') === 'true'
+      langBtn.setAttribute('aria-expanded', String(!isOpen))
+      langList.hidden = isOpen
+    })
+
+    langList.addEventListener('click', (e) => {
+      const option = e.target.closest('.topbar__lang-option')
+      if (!option) return
+      langList.querySelectorAll('.topbar__lang-option').forEach((el) => {
+        el.classList.remove('topbar__lang-option--active')
+        el.setAttribute('aria-selected', 'false')
+      })
+      option.classList.add('topbar__lang-option--active')
+      option.setAttribute('aria-selected', 'true')
+      langBtn.childNodes[0].textContent = option.textContent.trim()
+      langBtn.setAttribute('aria-expanded', 'false')
+      langList.hidden = true
+    })
+
+    document.addEventListener('click', (e) => {
+      if (!langBtn.contains(e.target) && !langList.contains(e.target)) {
+        langBtn.setAttribute('aria-expanded', 'false')
+        langList.hidden = true
+      }
+    })
+  }
 })()

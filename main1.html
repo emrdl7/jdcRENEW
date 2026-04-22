@@ -64,20 +64,27 @@
   <header class="site-header" id="site-header">
     <div class="topbar">
       <div class="topbar__inner">
-        <div class="topbar__links">
-          <a href="#">사이트맵</a>
-          <a href="#">고객헌장</a>
-          <a href="#">직원검색</a>
-          <a href="#">윤리신문고</a>
+        <!-- 왼쪽: 사용자 전환 -->
+        <div class="topbar__persona" role="group" aria-label="사용자 유형 전환">
+          <a class="topbar__persona-btn" href="index.html">일반</a>
+          <a class="topbar__persona-btn topbar__persona-btn--active" href="#">투자자</a>
         </div>
-        <div class="topbar__lang">
-          <a class="topbar__lang-item topbar__lang-item--active" href="#">KOR</a>
-          <span class="topbar__lang-sep" aria-hidden="true">·</span>
-          <a class="topbar__lang-item" href="#">ENG</a>
-          <span class="topbar__lang-sep" aria-hidden="true">·</span>
-          <a class="topbar__lang-item" href="#">CHN</a>
-          <span class="topbar__lang-sep" aria-hidden="true">·</span>
-          <a class="topbar__lang-item" href="#">JPN</a>
+        <!-- 오른쪽: 로그인 / 언어선택 / 사이트맵 -->
+        <div class="topbar__actions">
+          <a class="topbar__action-link" href="#">로그인</a>
+          <div class="topbar__lang-dropdown">
+            <button class="topbar__lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="언어 선택">
+              KOR
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <ul class="topbar__lang-list" role="listbox" aria-label="언어 목록" hidden>
+              <li class="topbar__lang-option topbar__lang-option--active" role="option" aria-selected="true" tabindex="0">KOR</li>
+              <li class="topbar__lang-option" role="option" aria-selected="false" tabindex="0">ENG</li>
+              <li class="topbar__lang-option" role="option" aria-selected="false" tabindex="0">CHN</li>
+              <li class="topbar__lang-option" role="option" aria-selected="false" tabindex="0">JPN</li>
+            </ul>
+          </div>
+          <a class="topbar__action-link" href="#">사이트맵</a>
         </div>
       </div>
     </div>
