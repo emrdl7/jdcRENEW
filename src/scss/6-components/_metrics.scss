@@ -2,6 +2,29 @@
 // Block: metrics
 @use '../2-tools/responsive' as resp;
 
+// 메트릭 섹션 배경 — 제주 한라산 풍경
+.section--metrics {
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('https://images.unsplash.com/photo-1668755929372-89773da5547b?w=1800&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.2;
+    content: '';
+  }
+
+  .section__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section__eyebrow {
+    color: var(--color-warning);
+  }
+}
+
 .metrics {
   &__grid {
     display: grid;
@@ -52,6 +75,7 @@
     font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: -0.035em;
+    color: var(--color-warning);
   }
 
   &__unit {

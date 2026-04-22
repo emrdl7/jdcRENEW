@@ -102,15 +102,15 @@
   }
 
   &__pillar-letter {
-    font-size: 4rem;
-    font-weight: var(--font-weight-bold);
+    font-size: 6rem;
+    font-weight: var(--font-weight-black);
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--color-primary);
   }
 
   &__pillar-title {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.02em;
   }

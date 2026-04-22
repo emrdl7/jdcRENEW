@@ -12,7 +12,12 @@
   padding: var(--spacing-xl);
   overflow: hidden;
   color: var(--color-white);
+  text-decoration: none;
   border-radius: var(--radius-2xl);
+
+  &:hover {
+    color: var(--color-white);
+  }
   isolation: isolate;
   cursor: pointer;
   scroll-snap-align: start;
@@ -30,6 +35,7 @@
     outline-offset: 4px;
   }
 
+  // 배경 이미지
   &__img {
     position: absolute;
     inset: 0;
@@ -40,7 +46,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s var(--easing-out);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
 
@@ -48,13 +54,28 @@
     transform: scale(1.06);
   }
 
+  // 그라디언트 오버레이 — 하단으로 갈수록 진해지는 어두운 그라디언트
   &__overlay {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary-800) 25%, transparent) 0%, color-mix(in srgb, var(--color-primary-800) 85%, transparent) 100%);
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink-deep) 15%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-deep) 75%, transparent) 100%
+    );
+    transition: background var(--transition-slow);
   }
 
+  &:hover &__overlay {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink-deep) 30%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-deep) 90%, transparent) 100%
+    );
+  }
+
+  // 카테고리 레이블
   &__meta {
     display: flex;
     gap: var(--spacing-md);
@@ -63,6 +84,7 @@
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    transition: opacity var(--transition-base);
 
     &::before {
       width: 2.4rem;
@@ -72,23 +94,31 @@
     }
   }
 
+  // 본문 영역 — 호버 시 위로 살짝 이동
   &__body {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
+    transition: transform var(--transition-slow);
+  }
+
+  &:hover &__body {
+    transform: translateY(-0.6rem);
   }
 
   &__title {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+    margin-bottom: 0;
     font-size: clamp(2.2rem, 2.2vw, 3.4rem);
     font-weight: var(--font-weight-bold);
     line-height: 1.1;
     letter-spacing: -0.025em;
+    color: inherit;
   }
 
   &__desc {
     max-width: 34ch;
-    margin-top: var(--spacing-sm);
+    min-height: 4.8rem;
     font-size: var(--font-size-sm);
     line-height: 1.6;
     color: color-mix(in srgb, var(--color-white) 78%, transparent);
@@ -108,8 +138,10 @@
     opacity: 0.7;
   }
 
+  // 화살표 버튼 — 호버 시 흰색 채움 + 대각선 이동
   &__arrow {
     display: grid;
+    flex-shrink: 0;
     place-items: center;
     width: 4.8rem;
     height: 4.8rem;
@@ -118,12 +150,18 @@
     backdrop-filter: blur(8px);
     border: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
     border-radius: var(--radius-full);
-    transition: background-color var(--transition-base) var(--easing-base), color var(--transition-base) var(--easing-base);
+    transition:
+      background-color var(--transition-base),
+      color var(--transition-base),
+      transform var(--transition-base),
+      border-color var(--transition-base);
   }
 
   &:hover &__arrow {
-    color: var(--color-primary-900);
+    color: var(--color-ink-deep);
     background-color: var(--color-white);
+    border-color: var(--color-white);
+    transform: translate(3px, -3px);
   }
 
   &--featured {

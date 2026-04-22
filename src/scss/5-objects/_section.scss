@@ -39,6 +39,10 @@
     line-height: var(--leading-tight);
     letter-spacing: -0.025em;
     color: var(--color-text);
+
+    em {
+      font-style: normal;
+    }
   }
 
   &__desc {
@@ -70,4 +74,6 @@
   &--muted {
     background-color: var(--color-primary-50);
   }
+
+
 }

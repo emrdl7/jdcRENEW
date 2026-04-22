@@ -3,6 +3,21 @@
 @use '../2-tools/mixins' as *;
 @use '../2-tools/responsive' as resp;
 
+// section__head와 결합 시 2열 레이아웃 (title / controls)
+.notice-board__head {
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-lg) calc(var(--spacing-xl) + var(--spacing-sm));
+
+  @media (width <= 1100px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.notice-board__controls {
+  display: flex;
+  align-items: center;
+}
+
 .notice-board {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -49,8 +64,8 @@
 
     &--active {
       color: var(--color-white);
-      background-color: var(--color-ink-deep);
-      border-color: var(--color-ink-deep);
+      background-color: var(--color-primary-500);
+      border-color: var(--color-primary-500);
 
       .notice-board__tab-label {
         color: var(--color-white);
@@ -148,29 +163,31 @@
   }
 
   &__more {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
     gap: var(--spacing-sm);
-    padding: var(--spacing-lg) var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-muted);
-    border-top: 1px solid var(--color-gray-150);
-    transition: color 0.15s var(--easing-base);
+    white-space: nowrap;
+    color: var(--color-text);
+    background-color: transparent;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-full);
+    transition:
+      background-color var(--transition-base) var(--easing-out),
+      color var(--transition-base) var(--easing-out),
+      border-color var(--transition-base) var(--easing-out);
 
     svg {
       width: 1.6rem;
       height: 1.6rem;
-      transition: transform 0.15s var(--easing-out);
     }
 
     &:hover {
-      color: var(--color-primary);
-
-      svg {
-        transform: translateX(4px);
-      }
+      color: var(--color-white);
+      background-color: var(--color-ink-deep);
+      border-color: var(--color-ink-deep);
     }
 
     &:focus-visible {
