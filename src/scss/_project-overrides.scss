@@ -29,6 +29,9 @@
   --color-text-muted: #545c69;
   --color-ink-deep: #0c1117; // 다크 섹션 배경
 
+  // ─── 폰트 굵기 확장 ────────────────────────────────────
+  --font-weight-black: 900;
+
   // ─── 폰트 패밀리 — Pretendard Variable 단일 ────────────────
   --font-family-base: 'Pretendard Variable', 'Pretendard', -apple-system,
     blinkmacsystemfont, system-ui, 'Malgun Gothic', sans-serif;
@@ -41,7 +44,7 @@
 
   // ─── 간격 확장 (섹션/컨테이너/초대형) ──────────────────────
   --spacing-4xl: 8rem; // 80px
-  --spacing-section: clamp(8rem, 10vw, 16rem); // 섹션 상하 패딩
+  --spacing-section: clamp(6rem, 7vw, 10rem); // 섹션 상하 패딩
   --spacing-container: clamp(2rem, 4vw, 4.8rem); // 컨테이너 좌우 패딩
 
   // ─── 컨테이너 최대 너비 (디자인 기준 1440px) ────────────────

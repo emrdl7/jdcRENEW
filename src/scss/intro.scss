@@ -1,0 +1,170 @@
+// 인트로 페이지 전용 스타일시트
+// hero 영역 + 헤더에 필요한 레이어만 포함
+
+// 1. Settings
+@use '1-settings' as settings;
+
+// 2. Tools
+@use '2-tools' as tools;
+
+// 3. Generic
+@use '3-generic' as generic;
+
+// 4. Elements
+@use '4-elements' as elements;
+
+// 5. Objects — 인트로에 필요 없음, 생략
+
+// 6. Components — 인트로 필요 컴포넌트만
+@use '6-components/topbar';
+@use '6-components/site-header';
+@use '6-components/hero';
+
+// 접근성 — skip-to-content
+@use '7-utilities/skip-to-content';
+@use '7-utilities/sr-only';
+
+// 프로젝트별 오버라이드
+@use 'project-overrides';
+
+// 인트로 페이지 전용
+#site-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+}
+
+// 히어로 레이아웃 — 세로 단일 컬럼
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+}
+
+// 상단 영역 — 로고·슬로건·검색폼 세로 중앙 정렬
+.hero__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 124rem;
+  margin-right: auto;
+  margin-left: auto;
+  gap: var(--spacing-xl);
+}
+
+// 슬로건 — 메인 헤드라인급
+.hero__slogan {
+  font-size: clamp(3.6rem, 5.2vw, 7.2rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+  text-align: center;
+  word-break: keep-all;
+}
+
+// 검색폼 — 페르소나 카드와 동일한 글래스모피즘
+.hero__search {
+  display: flex;
+  align-items: center;
+  width: min(64rem, 90vw);
+  // 우측 패딩 = 버튼 여백. overflow 제거 → 버튼 원형 유지
+  padding: 1rem 1rem 1rem var(--spacing-xl);
+  background-color: color-mix(in srgb, var(--color-primary-900) 40%, transparent);
+  backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid color-mix(in srgb, var(--color-white) 22%, transparent);
+  border-radius: 10rem;
+  transition: background-color 0.35s var(--easing-out);
+
+  &:focus-within {
+    background-color: color-mix(in srgb, var(--color-primary-900) 55%, transparent);
+  }
+}
+
+.hero__search-input {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 0;
+  font-size: var(--font-size-base);
+  color: var(--color-white);
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--color-white) 50%, transparent);
+  }
+
+  // 브라우저 기본 검색 취소 버튼 제거
+  &::-webkit-search-cancel-button { display: none; }
+}
+
+.hero__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.4rem;
+  height: 6.4rem;
+  flex-shrink: 0;
+  color: var(--color-white);
+  background-color: color-mix(in srgb, var(--color-white) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-white) 28%, transparent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s var(--easing-out);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-white) 35%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+}
+
+// 페르소나 카드별 컬러
+.hero-persona--investor { --persona-color: var(--color-info); }
+.hero-persona--citizen  { --persona-color: var(--color-success); }
+.hero-persona--global   { --persona-color: var(--color-warning); }
+
+.hero-persona--investor,
+.hero-persona--citizen,
+.hero-persona--global {
+  .hero-persona__cta {
+    color: var(--color-white);
+    background-color: transparent;
+    border: 1.5px solid var(--color-white);
+  }
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--persona-color) 65%, transparent);
+  }
+}
+
+.hero__logo {
+  display: flex;
+  justify-content: center;
+}
+
+// 페르소나 카드 — 중앙정렬
+.hero__persona {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// 메타(스탯+닷) — 중앙정렬
+.hero__meta {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// 인트로 로고
+.site-header__logo-img {
+  width: 36rem;
+  height: 7.6rem;
+  opacity: 0.9;
+}

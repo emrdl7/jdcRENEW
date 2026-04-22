@@ -212,7 +212,7 @@
   overflow: hidden;
   text-align: center;
   color: var(--color-white);
-  background-color: color-mix(in srgb, var(--color-primary-900) 62%, transparent);
+  background-color: color-mix(in srgb, var(--color-primary-900) 40%, transparent);
   backdrop-filter: blur(18px) saturate(130%);
   transition:
     transform 0.45s var(--easing-out),
@@ -340,6 +340,384 @@
   }
 }
 
+
+// ── 투자자·기업 컴팩트 배너 (main1.html) ────────────────────────
+// 배경 이미지 없음 — 인트로 투자자 버튼 파란색 계열로 섹션 아이덴티티 표시
+.hero--investor {
+  min-height: unset;
+  height: 42rem;
+  padding-top: 8.8rem; // GNB 높이 보정
+  background: linear-gradient(135deg,
+    var(--color-primary-800) 0%,
+    var(--color-primary-700) 60%,
+    var(--color-primary-600) 100%
+  );
+
+  .hero__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-container) 8rem;
+
+    @include resp.respond-to('tablet') {
+      grid-template-columns: 1fr;
+    }
+
+    @media (width <= 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hero__title {
+    margin: 0;
+    font-size: clamp(3.2rem, 4vw, 5.2rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+    text-align: left;
+  }
+
+  .hero__investor-eyebrow {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary-300);
+  }
+
+  .hero__investor-art {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    svg {
+      width: 100%;
+      max-width: 48rem;
+      height: auto;
+      opacity: 0.9;
+    }
+
+    @media (width <= 767px) {
+      display: none;
+    }
+  }
+}
+
+// 중앙 정렬 레이아웃
+.hero__content--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+// 스탯 — 가로 한 줄 중앙 정렬
+.hero__investor-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2.4rem, 4vw, 6.4rem);
+  width: 100%;
+  margin-bottom: var(--spacing-2xl);
+  padding-top: var(--spacing-md);
+  padding-bottom: var(--spacing-xl);
+}
+
+.hero__investor-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.hero__investor-stat-label {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-white) 58%, transparent);
+}
+
+.hero__investor-stat-value {
+  font-size: clamp(4.8rem, 6vw, 7.2rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+
+  em {
+    margin-left: 0.4rem;
+    font-size: 0.42em;
+    font-style: normal;
+    font-weight: var(--font-weight-semibold);
+    vertical-align: 0.18em;
+    letter-spacing: 0;
+    color: color-mix(in srgb, var(--color-white) 60%, transparent);
+  }
+}
+
+// eyebrow — 라인 + 도트 스타일 (pill 제거)
+.hero__investor-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-white) 58%, transparent);
+  border: none;
+
+}
+
+.hero__investor-desc {
+  margin-top: var(--spacing-xl);
+  font-size: var(--font-size-base);
+  line-height: var(--leading-loose);
+  word-break: keep-all;
+  text-align: center;
+  color: color-mix(in srgb, var(--color-white) 72%, transparent);
+}
+
+.hero__investor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__investor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 1.6rem 3.2rem;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: 0; // sharp — 비즈니스 권위감
+  transition:
+    background-color 0.25s var(--easing-out),
+    transform 0.25s var(--easing-out),
+    box-shadow 0.25s var(--easing-out);
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--easing-out);
+  }
+
+  &--primary {
+    color: var(--color-primary-900);
+    background-color: var(--color-white);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px color-mix(in srgb, var(--color-black) 32%, transparent);
+
+      svg { transform: translateX(5px); }
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-white);
+      outline-offset: 3px;
+    }
+  }
+
+  &--ghost {
+    color: var(--color-white);
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-white) 38%, transparent);
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--color-white) 70%, transparent);
+      background-color: color-mix(in srgb, var(--color-white) 8%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-white);
+      outline-offset: 3px;
+    }
+  }
+}
+
+// 스플릿 레이아웃 — 좌: 카피 / 우: 스탯
+.hero__content--split {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  gap: 0;
+  align-items: center;
+
+  @media (width <= 1100px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 우측 — 세로 슬라이드 스탯 티커
+.hero__stat-ticker {
+  position: relative;
+  align-self: center;
+  height: 24rem;
+  overflow: hidden;
+  // active 영역(33%~67%)은 완전 불투명, 상하 가장자리 페이드
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 33%,
+    black 67%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 33%,
+    black 67%,
+    transparent 100%
+  );
+}
+
+// 각 아이템 = 컨테이너와 동일 높이(inset:0) → translateY % = 컨테이너 높이 기준
+.hero__stat-ticker-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end; // 우측 정렬
+  gap: var(--spacing-lg);
+  transform: translateY(200%); // 기본: 아래 숨김
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.7s var(--easing-out),
+    opacity 0.5s ease;
+
+  &--active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &--prev {
+    transform: translateY(-70%); // 마스크 구간 안에 걸쳐 페이드됨
+    opacity: 1;
+  }
+
+  &--next {
+    transform: translateY(70%); // 마스크 구간 안에 걸쳐 페이드됨
+    opacity: 1;
+  }
+}
+
+.hero__stat-ticker-label {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-white) 48%, transparent);
+}
+
+.hero__stat-ticker-value {
+  font-size: clamp(5.6rem, 7vw, 9rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+}
+
+.hero__stat-ticker-unit {
+  font-size: clamp(1.6rem, 2vw, 2.2rem);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
+  align-self: flex-end;
+  padding-bottom: 0.8rem;
+  color: color-mix(in srgb, var(--color-white) 52%, transparent);
+}
+
+// 데이터 카드 그리드 — 숫자가 주인공
+.hero__data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: color-mix(in srgb, var(--color-white) 10%, transparent);
+}
+
+.hero__data-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(2.8rem, 3.2vw, 4.8rem) clamp(2.4rem, 2.8vw, 4rem);
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--color-primary-900) 52%, transparent);
+  backdrop-filter: blur(24px) saturate(160%);
+  transition: background-color 0.3s var(--easing-out);
+
+  // 상단 강조선
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-white) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-white) 6%, transparent) 100%
+    );
+    content: '';
+  }
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-primary-700) 58%, transparent);
+  }
+}
+
+.hero__data-label {
+  margin-bottom: var(--spacing-md);
+  font-size: 1.0rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-white) 46%, transparent);
+}
+
+// 뷰티스코어: 숫자는 본문의 3배 이상 — 실제로 압도적으로 크게
+.hero__data-value {
+  font-size: clamp(4.4rem, 6vw, 8.8rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+}
+
+.hero__data-unit {
+  margin-left: 0.4rem;
+  font-size: 0.36em;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  vertical-align: 0.12em;
+  color: color-mix(in srgb, var(--color-white) 65%, transparent);
+}
+
+.hero__data-caption {
+  margin-top: var(--spacing-md);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  word-break: keep-all;
+  color: color-mix(in srgb, var(--color-white) 40%, transparent);
+}
+
+// 지표 캡션 (기존 hero-stat용)
+.hero-stat__caption {
+  margin-top: var(--spacing-xs);
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  color: color-mix(in srgb, var(--color-white) 45%, transparent);
+}
+
+@keyframes investor-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
 
 @keyframes hero-scroll-line {
   0% {
